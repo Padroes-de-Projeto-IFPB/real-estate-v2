@@ -6,7 +6,6 @@ import br.edu.ifpb.padroes.realstatev2.payment.processors.PropertyPayment;
 import br.edu.ifpb.padroes.realstatev2.payment.processors.RealEstatePayment;
 import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
-import org.mockito.Spy;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
@@ -17,15 +16,14 @@ import static org.mockito.Mockito.inOrder;
 
 @SpringBootTest
 public class PaymentServiceTest {
-
     @SpyBean
     private PaymentService paymentService;
 
-    @MockBean
+    @SpyBean
     private GovernmentTaxesPayment governmentTaxesPayment;
-    @MockBean
+    @SpyBean
     private RealEstatePayment realEstatePayment;
-    @MockBean
+    @SpyBean
     private PropertyPayment propertyPayment;
 
     @Test

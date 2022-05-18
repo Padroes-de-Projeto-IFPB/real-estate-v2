@@ -6,4 +6,6 @@ public interface PaymentProcessor {
 
     void process(Property property);
 
+    PaymentProcessor linkWith(PaymentProcessor paymentProcessor);
+
 }
