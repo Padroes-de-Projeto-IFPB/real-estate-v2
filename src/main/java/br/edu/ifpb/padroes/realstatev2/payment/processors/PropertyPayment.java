@@ -9,9 +9,11 @@ import java.math.BigDecimal;
 
 @Slf4j
 @Service
-public class PropertyPayment implements PaymentProcessor {
+public class PropertyPayment extends PaymentProcessor {
     @Override
     public void process(Property property) {
         log.info(String.format("Pay %f for the property taxes", property.getPrice()));
+
+        checkProx(property);
     }
 }

@@ -2,8 +2,20 @@ package br.edu.ifpb.padroes.realstatev2.payment;
 
 import br.edu.ifpb.padroes.realstatev2.domain.Property;
 
-public interface PaymentProcessor {
+public abstract class PaymentProcessor {
+    private PaymentProcessor next;
 
-    void process(Property property);
+    public PaymentProcessor next(PaymentProcessor next) {
+        this.next = next;
+        return next;
+    }
+
+    public abstract void process(Property property);
+
+    protected void checkProx(Property property) {
+        if (this.next != null) {
+            next.process(property);
+        }
+    }
 
 }

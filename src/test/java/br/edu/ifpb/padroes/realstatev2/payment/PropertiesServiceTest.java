@@ -23,7 +23,7 @@ public class PropertiesServiceTest {
     @SpyBean
     private PropertiesService propertiesService;
 
-    @MockBean
+    @SpyBean
     private PaymentService paymentService;
 
     @Test
