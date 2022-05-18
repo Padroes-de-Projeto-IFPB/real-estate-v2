@@ -2,10 +2,14 @@ package br.edu.ifpb.padroes.realstatev2.payment;
 
 import br.edu.ifpb.padroes.realstatev2.domain.Apartment;
 import br.edu.ifpb.padroes.realstatev2.domain.Bungalow;
+import br.edu.ifpb.padroes.realstatev2.domain.ComposeProperty;
 import br.edu.ifpb.padroes.realstatev2.domain.Tenement;
+import br.edu.ifpb.padroes.realstatev2.payment.processors.PropertyPayment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+
+import java.awt.*;
 import java.math.BigDecimal;
 
 @Service
@@ -13,6 +17,7 @@ import java.math.BigDecimal;
 public class PropertiesService {
 
     private final PaymentService paymentService;
+    private final ComposeProperty composite = new ComposeProperty();
 
     public void payProperties() {
 
@@ -27,14 +32,12 @@ public class PropertiesService {
         bungalow.setPrice(BigDecimal.valueOf(150000));
 
         Tenement tenament = new Tenement();
-        bungalow.setAddress("Rua y");
-        bungalow.setBuilder("Cortiço construtura");
-        bungalow.setPrice(BigDecimal.valueOf(100000));
+        tenament.setAddress("Rua y");
+        tenament.setBuilder("Cortiço construtura");
+        tenament.setPrice(BigDecimal.valueOf(100000));
 
         // TODO - reduzir chamadas múltiplas para uma única chamada para o método pay() utilizando o padrão composite
-        paymentService.pay(apartment);
-        paymentService.pay(bungalow);
-        paymentService.pay(tenament);
+        paymentService.pay(apartment, bungalow, tenament);
 
     }
 
