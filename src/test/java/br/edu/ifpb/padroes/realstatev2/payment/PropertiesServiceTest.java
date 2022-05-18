@@ -23,12 +23,13 @@ public class PropertiesServiceTest {
     @SpyBean
     private PropertiesService propertiesService;
 
-    @MockBean
+    @SpyBean
     private PaymentService paymentService;
 
     @Test
     void testPay() {
         propertiesService.payProperties();
+
 
         InOrder inOrder = inOrder(paymentService);
         inOrder.verify(paymentService).pay(any(Apartment.class));
